@@ -19,12 +19,20 @@ $ npm i
 $ ionic serve
 ```
 
+## Gotchas
+The first time you run `ionic serve`, a browser will open and likely give you
+an error, something like `Cannot find www/index.html`. This seems to be due
+to the Ionic CLI not waiting until all gulp tasks are complete.
+
+If you wait until Webpack is done, and all gulp tasks are complete, the app
+will load. You shouldn't run into this error again.
+
+
 ## Issues
 This is always a work in progress.
 
 ## TODO
-- move `www` out of repo
-- move `index.html` into `src`, finish build step to get everything working
+- add `cordova.js` in a nice way.
 - production, minified build step
 - examples of ngCordova integration
 - examples of Directive tests
