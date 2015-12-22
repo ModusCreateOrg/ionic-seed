@@ -8,10 +8,11 @@ var webpack = require('webpack-stream');
 
 var paths = {
   es6: ['./src/js/**/*.js'],
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  index: ['./src/index.html']
 };
 
-gulp.task('default', ['webpack', 'sass']);
+gulp.task('default', ['webpack', 'index']);
 
 gulp.task('webpack', function() {
   return gulp.src('./src/js/app.js')
@@ -19,6 +20,15 @@ gulp.task('webpack', function() {
     .pipe(gulp.dest('./www/js/'));
 });
 
+
+// simply copy the index over to /www
+// could add more complex stuff here if need be.
+gulp.task('index', function() {
+    return gulp.src(paths.index)
+        .pipe(gulp.dest('./www'));
+});
+
 gulp.task('watch', function() {
   gulp.watch(paths.es6, ['webpack']);
+  gulp.watch(paths.index, ['index']);
 });

@@ -9,7 +9,7 @@ module.exports = {
   },
 
   entry: [
-    './src/app.js'
+    './src/app/app.js'
   ],
 
   output: {

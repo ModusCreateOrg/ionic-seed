@@ -63,6 +63,7 @@
 	__webpack_require__(2);
 
 	// import our application SCSS, this includes the Ionic CSS.
+	// this gets around having to run an SCSS build step.
 
 	__webpack_require__(3);
 
@@ -64783,7 +64784,6 @@
 	        _classCallCheck(this, AppController);
 
 	        (0, _lodash.assign)(this, { $state: $state });
-	        console.log('app controller init');
 	        this.text = 'Welcome to the Ionic Seed';
 	    }
 	    AppController.$inject = ["$state"];
@@ -77314,8 +77314,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./about.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./about.scss");
+			module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./about.scss", function() {
+				var newContent = require("!!./../../../../node_modules/css-loader/index.js!./../../../../node_modules/sass-loader/index.js!./about.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});

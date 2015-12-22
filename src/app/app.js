@@ -2,7 +2,8 @@
 import 'ionic-sdk/release/js/ionic.bundle'
 
 // import our application SCSS, this includes the Ionic CSS.
-import './scss/app.scss'
+// this gets around having to run an SCSS build step.
+import '../scss/app.scss'
 
 import appRun from './app.run';
 import appConfig from './app.config';
