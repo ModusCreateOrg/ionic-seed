@@ -1,0 +1,8 @@
+{
+  "name": "ModusPlatformsDemo",
+  "app_id": "f3151cf4",
+  "gulpStartupTasks": [
+    "webpack",
+    "watch"
+  ]
+}
