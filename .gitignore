@@ -5,3 +5,5 @@ coverage/
 node_modules/
 platforms/
 plugins/
+www/index.html
+www/js/
