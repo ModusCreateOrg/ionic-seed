@@ -16,12 +16,16 @@ A starting project for all Ionic V1 projects. Features:
 $ git clone --depth 1 https://github.com/ModusCreateOrg/ionic-seed
 $ npm i -g ionic
 $ npm i
+$ ionic serve
 ```
 
 ## Issues
 This is always a work in progress.
 
 ## TODO
-- ngCordova examples
+- move `www` out of repo
+- move `index.html` into `src`, finish build step to get everything working
+- production, minified build step
+- examples of ngCordova integration
 - examples of Directive tests
 - examples of Service tests
