@@ -1,5 +1,5 @@
 {
-  "name": "ModusPlatformsDemo",
+  "name": "ionicSeed",
   "gulpStartupTasks": [
     "webpack"
   ]
