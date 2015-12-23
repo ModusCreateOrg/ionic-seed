@@ -8,6 +8,11 @@ export default class AboutController {
             'Babel',
             'ES6',
             'SCSS',
+            'Karma'
         ];
+    }
+
+    removeTechnology(technology) {
+        this.technologies.splice(this.technologies.indexOf(technology), 1);
     }
 }

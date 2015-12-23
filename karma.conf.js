@@ -2,8 +2,7 @@ module.exports = function(config) {
     config.set({
 
         // use headless PhantomJS
-        browsers: ['Chrome'],
-        // browsers: ['PhantomJS'],
+        browsers: ['PhantomJS'],
 
         // use Jasmine with Sinon for mocking and stubs
         frameworks: ['jasmine', 'sinon'],

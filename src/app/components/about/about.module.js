@@ -3,7 +3,7 @@ import aboutConfig from './about.config';
 import './about.scss';
 
 const aboutModule = angular
-  .module('modusIonicSeed.about', [])
+  .module('ionicSeed.about', [])
   .run(aboutRun)
   .config(aboutConfig)
 

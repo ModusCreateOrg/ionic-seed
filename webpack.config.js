@@ -1,58 +1,86 @@
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  watch: true,
+    watch: true,
 
-  eslint: {
-    configFile: '.eslintrc'
-  },
-
-  entry: [
-    './src/app/app.js'
-  ],
-
-  output: {
-    path: __dirname + '/js',
-    filename: 'app.js'
-  },
-
-  module: {
-    loaders: [{
-      test: /\.js?$/,
-      include: [
-        path.resolve(__dirname, 'src')
-      ],
-      exclude: /node_modules/,
-      loaders: ['ng-annotate', 'babel-loader']
-    }, {
-      test: /\.js$/,
-      include: [
-        path.resolve(__dirname, 'src')
-      ],
-      loader: 'eslint-loader',
-      exclude: /node_modules/
-    }, {
-      test: /\.scss$/,
-      loaders: ['style', 'css', 'sass']
+    eslint: {
+        configFile: '.eslintrc'
     },
-    {
-       test   : /\.woff|\.woff2|\.svg|.eot|\.ttf/,
-       loader : 'url?prefix=font/&limit=10000'
-    },
-    {
-      test: /\.html$/,
-      loader: 'html'
-    }]
-  },
-  resolve: {
-    root: [
-      path.join(__dirname, 'node_modules')
+
+    entry: [
+        './src/app/app.js'
     ],
-    extensions: ['', '.js']
-  },
 
-  plugins: [
-    new webpack.NoErrorsPlugin()
-  ]
+    output: {
+        path: __dirname + '/www',
+        filename: 'app.js'
+    },
+
+    // use inline source maps.
+    devtool: 'inline-source-map',
+
+    module: {
+        loaders: [{
+            test: /\.js?$/,
+            include: [
+                path.resolve(__dirname, 'src')
+            ],
+            exclude: /node_modules/,
+            loaders: ['ng-annotate', 'babel-loader']
+        }, {
+            test: /\.js$/,
+            include: [
+                path.resolve(__dirname, 'src')
+            ],
+            loader: 'eslint-loader',
+            exclude: /node_modules/
+        }, {
+            test: /\.scss$/,
+            loaders: ['style', 'css', 'sass']
+        }, {
+            test: /\.woff(\?.*$|$)/,
+            loader: 'url-loader'
+        }, {
+            test: /\.woff2(\?.*$|$)/,
+            loader: 'url-loader'
+        }, {
+            test: /\.ttf(\?.*$|$)/,
+            loader: 'url-loader'
+        }, {
+            test: /\.eot(\?.*$|$)/,
+            loader: 'url-loader'
+        }, {
+            test: /\.svg(\?.*$|$)/,
+            loader: 'url-loader'
+        }, {
+            test: /\.html$/,
+            loader: 'html'
+        }]
+    },
+    resolve: {
+        root: [
+            path.join(__dirname, 'node_modules')
+        ],
+        extensions: ['', '.js']
+    },
+
+    plugins: [
+        new webpack.NoErrorsPlugin(),
+        new HtmlWebpackPlugin({
+
+            // load our index.html "template"
+            template: './src/index.html',
+
+            // inject all scripts into the body
+            inject: 'body',
+            filename: 'index.html'
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        })
+    ]
 };

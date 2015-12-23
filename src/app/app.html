@@ -1,8 +1,15 @@
 <ion-view view-title="Ionic Seed">
-  <ion-content padding="true">
-    <p>{{ app.text }}</p>
-    <button ng-click="app.onAboutTap()" class="button button-block button-positive button-outline">
-      <i class="ion-bookmark"></i> About
-    </button>
-  </ion-content>
+    <ion-content padding="true">
+        <button ng-click="app.onAboutTap()" class="button button-block button-positive button-outline">
+            <strong>About</strong>
+        </button>
+
+        <ul>
+          <li ng-repeat="(dep, version) in app.dependencies">
+              <strong>{{ dep }}</strong> - {{ version }}
+          </li>
+        </ul>
+
+        <p>Version {{ app.version }}</p>
+    </ion-content>
 </ion-view>

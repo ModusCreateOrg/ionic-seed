@@ -1,8 +1,6 @@
 {
   "name": "ModusPlatformsDemo",
   "gulpStartupTasks": [
-    "webpack",
-    "index",
-    "watch"
+    "webpack"
   ]
 }
