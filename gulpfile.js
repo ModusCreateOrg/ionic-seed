@@ -1,15 +1,13 @@
 var gulp = require('gulp');
-var gutil = require('gulp-util');
-var bower = require('bower');
-var concat = require('gulp-concat');
-var rename = require('gulp-rename');
-var sh = require('shelljs');
 var webpack = require('webpack-stream');
+var del = require('del');
 
 var paths = {
   es6: ['./src/js/**/*.js'],
   sass: ['./scss/**/*.scss'],
-  index: ['./src/index.html']
+  html: ['./src/**/*.html'],
+  index: ['./src/index.html'],
+  platformBuildDir: ['./platforms/ios/www']
 };
 
 gulp.task('default', ['webpack', 'index']);
@@ -20,7 +18,6 @@ gulp.task('webpack', function() {
     .pipe(gulp.dest('./www/js/'));
 });
 
-
 // simply copy the index over to /www
 // could add more complex stuff here if need be.
 gulp.task('index', function() {
@@ -28,7 +25,21 @@ gulp.task('index', function() {
         .pipe(gulp.dest('./www'));
 });
 
+gulp.task('clean-www', function(cb) {
+    del([paths.platformBuildDir], cb);
+})
+
+// takes our built `www` directory, and moves it into the
+// platforms/ios/www directory so we can run on the device.
+gulp.task('copy-www', function() {
+    return gulp.src('./www/**')
+        .pipe(gulp.dest('./platforms/ios/www'));
+});
+
+gulp.task('device', ['clean-www', 'copy-www']);
+
 gulp.task('watch', function() {
-  gulp.watch(paths.es6, ['webpack']);
+  gulp.watch(paths.es6, ['webpack', 'copy-www']);
+  gulp.watch(paths.html, ['webpack', 'copy-www']);
   gulp.watch(paths.index, ['index']);
 });

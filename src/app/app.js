@@ -1,6 +1,9 @@
 // import the Ionic framework bundled with Angular
 import 'ionic-sdk/release/js/ionic.bundle'
 
+// import ngCordova
+import 'ng-cordova';
+
 // import our application SCSS, this includes the Ionic CSS.
 // this gets around having to run an SCSS build step.
 import '../scss/app.scss'
@@ -15,6 +18,7 @@ const appModule = angular
   .module('modusIonicSeed', [
       // include ionic, and angular
       'ionic',
+      'ngCordova',
 
       // all other application modules will be imported here
       aboutModule
