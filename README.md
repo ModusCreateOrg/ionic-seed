@@ -54,6 +54,7 @@ This is always a work in progress.
 
 ## TODO
 - production, minified build step
+- fix test coverage reporting
 - examples of ngCordova integration
 - examples of Directive tests
 - examples of Service tests

@@ -3,13 +3,5 @@
         <button ng-click="app.onAboutTap()" class="button button-block button-positive button-outline">
             <strong>About</strong>
         </button>
-
-        <ul>
-          <li ng-repeat="(dep, version) in app.dependencies">
-              <strong>{{ dep }}</strong> - {{ version }}
-          </li>
-        </ul>
-
-        <p>Version {{ app.version }}</p>
     </ion-content>
 </ion-view>
