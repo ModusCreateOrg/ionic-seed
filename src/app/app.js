@@ -1,8 +1,3 @@
-// require our index.html file.
-// when Webpack bundles our source, the index.html file will be copied
-// into the /www directory.
-// require('file?name=[name].[ext]!../index.html');
-
 // import the Ionic framework bundled with Angular
 import 'ionic-sdk/release/js/ionic.bundle'
 
@@ -21,6 +16,7 @@ import { name as aboutModule } from './components/about/about.module';
 
 const appModule = angular
   .module('ionicSeed', [
+
       // include ionic, and angular
       'ionic',
       'ngCordova',
