@@ -28,22 +28,10 @@ describe('Application Tests', () => {
             expect(controller).toBeDefined();
         });
 
-        it('should should define a text value', () => {
-            expect(controller.text).toBe('Welcome to the Ionic Seed');
+        it('should define an onScannerTap method', () => {
+            expect(controller.onScannerTap).toBeDefined();
         });
 
-        it('should define an onAboutTap method', () => {
-            expect(controller.onAboutTap).toBeDefined();
-        });
-
-        it(`should transition to the 'about' component`, () => {
-
-            // execute the function on our controller class
-            controller.onAboutTap();
-
-            // and expect `this.$state.go' to have been called properly
-            expect(controller.$state.go.calledWith('about')).toBe(true);
-        })
     });
 
 })

@@ -36,25 +36,7 @@ module.exports = {
             ],
             loader: 'eslint-loader',
             exclude: /node_modules/
-        }, {
-            test: /\.scss$/,
-            loaders: ['style', 'css', 'sass']
-        }, {
-            test: /\.woff(\?.*$|$)/,
-            loader: 'url-loader'
-        }, {
-            test: /\.woff2(\?.*$|$)/,
-            loader: 'url-loader'
-        }, {
-            test: /\.ttf(\?.*$|$)/,
-            loader: 'url-loader'
-        }, {
-            test: /\.eot(\?.*$|$)/,
-            loader: 'url-loader'
-        }, {
-            test: /\.svg(\?.*$|$)/,
-            loader: 'url-loader'
-        }, {
+        },{
             test: /\.html$/,
             loader: 'html'
         }]

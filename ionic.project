@@ -1,6 +1,9 @@
 {
   "name": "ionicSeed",
   "gulpStartupTasks": [
-    "webpack"
+    "webpack",
+    "copy-assets",
+    "scss",
+    "watch"
   ]
 }

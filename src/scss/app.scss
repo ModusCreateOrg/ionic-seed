@@ -19,8 +19,24 @@ $dark:                            #444 !default;
 $font-family-base: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
 
 // The path for our ionicons font files
-$ionicons-font-path: "../../node_modules/ionic-sdk/release/fonts";
+$ionicons-font-path: "../assets/fonts";
 
+$dark: #263238;
+$positive: #2196F3;
 
-// Include all of Ionic
+// include all of Ionic
 @import "../../node_modules/ionic-sdk/scss/ionic";
+
+// include your custom component SCSS modules
+@import '../app/components/about/about.scss';
+
+.bar {
+  border-bottom-width: 0;
+
+  &.bar-gradient {
+    background: linear-gradient(to right, #1976D2, #90CAF9);
+  }
+  &.bar-gradient-dark {
+    background: linear-gradient(to right, #263238, #546E7A);
+  }
+}

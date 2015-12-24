@@ -4,10 +4,6 @@ import 'ionic-sdk/release/js/ionic.bundle'
 // import ngCordova
 import 'ng-cordova';
 
-// import our application SCSS, this includes the Ionic CSS.
-// this gets around having to run an SCSS build step.
-import '../scss/app.scss'
-
 import appRun from './app.run';
 import appConfig from './app.config';
 
