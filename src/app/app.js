@@ -8,7 +8,7 @@ import appRun from './app.run';
 import appConfig from './app.config';
 
 // basically, import aboutModule.name
-import { name as aboutModule } from './components/about/about.module';
+import aboutModule from './components/about/about.module';
 
 const appModule = angular
   .module('ionicSeed', [
@@ -18,7 +18,7 @@ const appModule = angular
       'ngCordova',
 
       // all other application modules will be imported here
-      aboutModule
+      aboutModule.name
 
   ])
   .run(appRun)
