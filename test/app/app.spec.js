@@ -1,8 +1,5 @@
 // all of our Jasmine and Sinon utilities (describe, it, sinon) are globally
 // injected by Karma. no need to import them manually for each test.
-
-import 'ionic-sdk/release/js/ionic.bundle';
-
 import AppController from '../../src/app/app.controller';
 import AppConfig from '../../src/app/app.config';
 

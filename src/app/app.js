@@ -11,17 +11,17 @@ import appConfig from './app.config';
 import aboutModule from './components/about/about.module';
 
 const appModule = angular
-  .module('ionicSeed', [
+    .module('ionicSeed', [
 
-      // include ionic, and angular
-      'ionic',
-      'ngCordova',
+        // include ionic, and angular
+        'ionic',
+        'ngCordova',
 
-      // all other application modules will be imported here
-      aboutModule.name
+        // all other application modules will be imported here
+        aboutModule.name
 
-  ])
-  .run(appRun)
-  .config(appConfig)
+    ])
+    .run(appRun)
+    .config(appConfig)
 
 export default appModule;
