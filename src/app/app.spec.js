@@ -28,8 +28,13 @@ describe('Application Tests', () => {
             expect(controller).toBeDefined();
         });
 
-        it('should define an onScannerTap method', () => {
-            expect(controller.onScannerTap).toBeDefined();
+        it('should define an onAboutTap method', () => {
+            expect(controller.onAboutTap).toBeDefined();
+        });
+
+        it('should transition to the About component', () => {
+          controller.onAboutTap();
+          expect(controller.$state.go.calledWith('about')).toBe(true);
         });
 
     });

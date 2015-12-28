@@ -2,38 +2,52 @@ module.exports = function(config) {
     config.set({
 
         // use headless PhantomJS
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
 
         // use Jasmine with Sinon for mocking and stubs
         frameworks: ['jasmine', 'sinon'],
 
-        // watch for all files in `src` that end in *.spec.js
+        // load our single entry point for our tests
         files: [
-            'src/**/*.spec.js'
+            'tests/tests.webpack.js'
         ],
 
-        // preprocess our test files with Babel so we can use ES6
+        // preprocess with webpack and our sourcemap loader
         preprocessors: {
-            'src/**/*.spec.js': ['webpack', 'sourcemap']
+            'tests/tests.webpack.js': ['webpack', 'sourcemap']
         },
 
         reporters: [
-          // https://github.com/mlex/karma-spec-reporter
-          'spec',
+            // https://github.com/mlex/karma-spec-reporter
+            'spec',
 
-          // https://github.com/karma-runner/karma-coverage
-          'coverage'
+            // https://github.com/karma-runner/karma-coverage
+            'coverage'
         ],
+
 
         // configure webpack within Karma
         webpack: {
+
+            // just do inline source maps instead of the default
+            devtool: 'inline-source-map',
+
             module: {
-                loaders: [
-                    { test: /\.js/, exclude: /node_modules/, loader: 'babel-loader' },
-                    { test: /\.html$/, loader: 'html' }
-                ]
-            },
-            watch: true
+                loaders: [{
+                    test: /\.js/,
+                    exclude: /node_modules/,
+                    loader: 'babel-loader'
+                }, {
+                    test: /\.html$/,
+                    loader: 'html'
+                }],
+                // delays coverage til after tests are run, fixing transpiled source coverage error
+                postLoaders: [{
+                    test: /\.js$/,
+                    exclude: /(tests|node_modules|\.spec\.js$)/,
+                    loader: 'istanbul-instrumenter'
+                }]
+            }
         },
 
         // configure the webpack server to not be so verbose
@@ -43,8 +57,14 @@ module.exports = function(config) {
 
         // setup code coverage
         coverageReporter: {
-          dir: 'coverage/',
-          type: 'html'
+            reporters: [{
+                type: 'text-summary',
+            }, {
+                type: 'html',
+                dir: 'coverage/'
+            }]
         },
+
+
     });
 };
