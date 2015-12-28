@@ -1,4 +1,4 @@
-import AboutController from './about.controller';
+import AboutController from '../../src/app/components/about/about.controller';
 
 describe('About Component', () => {
 
