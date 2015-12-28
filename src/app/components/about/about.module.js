@@ -4,7 +4,7 @@ import aboutControllers from './about.controllers';
 
 const aboutModule = angular
     .module('ionicSeed.about', [
-        'ionicSeed.about.controllers'
+        aboutControllers.name
     ])
     .run(aboutRun)
     .config(aboutConfig)
