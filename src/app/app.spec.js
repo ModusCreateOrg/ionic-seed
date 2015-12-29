@@ -3,25 +3,47 @@
 import App from './app';
 
 describe('Application Tests', () => {
-    let sandbox, stubs, controller;
+    let sandbox, stubs, controller, deferred, scope;
+
+    let usersData = [{
+        "name": "Dave Ackerman",
+        "email": "dave@nugget.com",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg"
+    }, {
+        "name": "Joe Schmoe",
+        "email": "joe@nugget.com",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/teleject/128.jpg"
+    }];
 
     before(() => {
         sandbox = sinon.sandbox.create();
+    })
+
+    beforeEach(angular.mock.module(App.name))
+
+    beforeEach(inject(($controller, $q, $rootScope) => {
+        // Since we don't want ui router changing the browser url on state transistions,
+        // we'll mock the state server and test that it was called as expected.
+        scope = $rootScope.$new();
+
         stubs = {
+            userService: {
+                getUsers: sandbox.stub().returns($q.when({
+                    data: {
+                        users: usersData
+                    }
+                }))
+            },
             $state: {
                 go: sandbox.stub()
             }
         };
-    })
 
-    beforeEach(angular.mock.module(App.name, ($provide) => {
-        // Since we don't want ui router changing the browser url on state transistions,
-        // we'll mock the state server and test that it was called as expected.
-        $provide.value('$state', stubs.$state);
-    }));
+        controller = $controller('AppController', {
+            $state: stubs.$state,
+            userService: stubs.userService
+        });
 
-    beforeEach(inject(($controller) => {
-        controller = $controller('AppController', { });
     }));
 
     afterEach(() => {
@@ -39,9 +61,17 @@ describe('Application Tests', () => {
         });
 
         it('should transition to the About component', () => {
-          controller.onAboutTap();
-          expect(stubs.$state.go).to.have.been.called.once;
-          expect(stubs.$state.go).to.have.been.calledWith('about');
+            controller.onAboutTap();
+            expect(stubs.$state.go).to.have.been.called.once;
+            expect(stubs.$state.go).to.have.been.calledWith('about');
+        });
+
+        it('should fetch an array of users from our service', () => {
+            expect(stubs.userService.getUsers).to.have.been.called.once;
+            // get through the promise
+            scope.$digest();
+            expect(controller.users).to.be.ok;
+            expect(controller.users.length).to.equal(2);
         });
 
     });

@@ -1,5 +1,3 @@
-const AboutRun = () => {
-  console.log('About module run');
-}
+const AboutRun = () => {};
 
 export default AboutRun;

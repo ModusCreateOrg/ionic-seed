@@ -17,7 +17,7 @@ describe('About Component', () => {
         expect(controller.technologies.length).to.equal(5);
     });
 
-    it("should remove a technology", () => {
+    it('should remove a technology', () => {
         controller.removeTechnology('SCSS');
         expect(controller.technologies.length).to.equal(4);
         expect(controller.technologies).to.not.contain('SCSS');

@@ -4,5 +4,14 @@
         <button ng-click="app.onAboutTap()" class="button button-block button-positive button-outline">
             <strong>About</strong>
         </button>
+
+        <ion-list>
+            <ion-item class="item-avatar" ng-repeat="user in app.users">
+                <img ng-src="{{ user.avatar }}">
+                <h2>{{ user.name }}</h2>
+                <p>{{ user.email }}</p>
+            </ion-item>
+        </ion-list>
+
     </ion-content>
 </ion-view>
