@@ -2,14 +2,17 @@ import { assign } from 'lodash';
 
 export default class AboutController {
     /*@ngInject*/
-    constructor() {
-        this.technologies = [
-            'Webpack',
-            'Babel',
-            'ES6',
-            'SCSS',
-            'Karma'
-        ];
+    constructor($scope) {
+        assign(this, {
+            $scope,
+            technologies: [
+                'Webpack',
+                'Babel',
+                'ES6',
+                'SCSS',
+                'Karma'
+            ]
+        });
     }
 
     removeTechnology(technology) {

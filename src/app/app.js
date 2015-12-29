@@ -6,6 +6,7 @@ import 'ng-cordova';
 
 import appRun from './app.run';
 import appConfig from './app.config';
+import appController from './app.controller';
 import appDirectives from './app.directives';
 
 // basically, import aboutModule.name
@@ -25,6 +26,7 @@ const appModule = angular
         aboutModule.name
 
     ])
+    .controller('AppController', appController)
     .run(appRun)
     .config(appConfig)
 
