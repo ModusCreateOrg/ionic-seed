@@ -1,12 +1,11 @@
 import appTemplate from './app.html';
-import appController from './app.controller';
 
 /*@ngInject*/
 const AppConfig = ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('home', {
       url: '/',
       template: appTemplate,
-      controller: appController,
+      controller: 'AppController',
       controllerAs: 'app'
   });
 

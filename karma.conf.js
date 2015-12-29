@@ -9,7 +9,7 @@ module.exports = function(config) {
         browsers: ['PhantomJS'],
 
         // use Jasmine with Sinon for mocking and stubs
-        frameworks: ['jasmine', 'sinon'],
+        frameworks: ['mocha', 'sinon-chai'],
 
         // load our single entry point for our tests
         files: [
@@ -39,12 +39,12 @@ module.exports = function(config) {
                 loaders: [{
                     test: /\.spec\.js$/,
                     loader: 'babel-loader',
-                    include: [path.resolve('src')]
+                    include: [path.resolve('src'), path.resolve('test')]
                 }, {
                     test: /\.js$/,
                     loader: 'isparta-loader',
                     exclude: /\.spec\.js$/,
-                    include: [path.resolve('src')]
+                    include: [path.resolve('src'), path.resolve('test')]
                 }, {
                     test: /\.html$/,
                     loader: 'html'
@@ -52,6 +52,13 @@ module.exports = function(config) {
             },
             stats: {
                 colors: true
+            }
+        },
+
+        // Mocha Configurations
+        client: {
+            mocha: {
+                reporter: 'html' // change Karma's debug.html to the mocha web reporter
             }
         },
 
