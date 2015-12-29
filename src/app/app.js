@@ -6,6 +6,7 @@ import 'ng-cordova';
 
 import appRun from './app.run';
 import appConfig from './app.config';
+import appDirectives from './app.directives';
 
 // basically, import aboutModule.name
 import aboutModule from './components/about/about.module';
@@ -16,6 +17,9 @@ const appModule = angular
         // include ionic, and angular
         'ionic',
         'ngCordova',
+
+        // high level app directives
+        appDirectives.name,
 
         // all other application modules will be imported here
         aboutModule.name

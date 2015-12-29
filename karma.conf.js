@@ -37,12 +37,13 @@ module.exports = function(config) {
 
             module: {
                 loaders: [{
-                    test: /\.js$/,
+                    test: /\.spec\.js$/,
                     loader: 'babel-loader',
-                    include: [path.resolve('test')]
+                    include: [path.resolve('src')]
                 }, {
                     test: /\.js$/,
                     loader: 'isparta-loader',
+                    exclude: /\.spec\.js$/,
                     include: [path.resolve('src')]
                 }, {
                     test: /\.html$/,
@@ -52,21 +53,6 @@ module.exports = function(config) {
             stats: {
                 colors: true
             }
-
-            // loaders: [{
-            //     test: /\.js/,
-            //     exclude: /node_modules/,
-            //     loader: 'babel-loader'
-            // }, {
-            //     test: /\.html$/,
-            //     loader: 'html'
-            // }],
-            // // delays coverage til after tests are run, fixing transpiled source coverage error
-            // postLoaders: [{
-            //     test: /\.js$/,
-            //     exclude: /(tests|node_modules|\.spec\.js$)/,
-            //     loader: 'istanbul-instrumenter'
-            // }]
         },
 
         // configure the webpack server to not be so verbose

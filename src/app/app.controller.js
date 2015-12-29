@@ -5,6 +5,12 @@ export default class AppController {
     constructor($state, $cordovaStatusbar) {
         assign(this, { $state });
         this.text = 'Welcome to the Ionic Seed';
+
+        this.user = {
+            name: 'Dave Ackerman',
+            email: 'dave@dude.com'
+        };
+
     }
 
     onAboutTap() {
