@@ -3,11 +3,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    watch: true,
-
-    eslint: {
-        configFile: '.eslintrc'
-    },
+    watch: false,
 
     entry: [
         './src/app/app.js'
@@ -18,24 +14,11 @@ module.exports = {
         filename: 'app.js'
     },
 
-    // use inline source maps.
-    devtool: 'cheap-module-source-map',
-
     module: {
         loaders: [{
             test: /\.js?$/,
-            include: [
-                path.resolve(__dirname, 'src')
-            ],
-            exclude: /node_modules/,
+            exclude: /(test|node_modules|\.spec\.js$)/,
             loaders: ['ng-annotate', 'babel-loader']
-        }, {
-            test: /\.js$/,
-            include: [
-                path.resolve(__dirname, 'src')
-            ],
-            loader: 'eslint-loader',
-            exclude: /node_modules/
         },{
             test: /\.html$/,
             loader: 'html'
@@ -49,7 +32,6 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.NoErrorsPlugin(),
         new HtmlWebpackPlugin({
 
             // load our index.html "template"
@@ -58,6 +40,17 @@ module.exports = {
             // inject all scripts into the body
             inject: 'body',
             filename: 'index.html'
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: false,
+            compress: {
+                warnings: false
+            }
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
         })
     ]
 };
