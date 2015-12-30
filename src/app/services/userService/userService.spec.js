@@ -1,47 +1,26 @@
 import appServices from '../../app.services';
 
-describe('Application Tests', () => {
-    // let sandbox, stubs, controller;
+describe('User Service', () => {
+    let apiUrl, userService, $httpBackend;
 
-    // before(() => {
-    //     sandbox = sinon.sandbox.create();
-    //     stubs = {
-    //         $state: {
-    //             go: sandbox.stub()
-    //         }
-    //     };
-    // })
+    beforeEach(angular.mock.module(appServices.name));
 
-    // beforeEach(angular.mock.module(appServices.name));
+    beforeEach(inject((_apiUrl_, _userService_, _$httpBackend_) => {
+        apiUrl = _apiUrl_;
+        userService = _userService_;
+        $httpBackend = _$httpBackend_;
+    }));
 
-    // beforeEach(inject(($injector) => {
-    //     // Set up the mock http service responses
-    //     $httpBackend = $injector.get('$httpBackend');
-    //     // backend definition common for all tests
-    //     authRequestHandler = $httpBackend.when('GET', '/auth.py')
-    //                            .respond({userId: 'userX'}, {'A-Token': 'xxx'});
+    afterEach(function() {
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
+    });
 
-    //     // Get hold of a scope (i.e. the root scope)
-    //     $rootScope = $injector.get('$rootScope');
-    //     // The $controller service is used to create instances of controllers
-    //     var $controller = $injector.get('$controller');
-
-    //     createController = function() {
-    //       return $controller('MyController', {'$scope' : $rootScope });
-    //     };
-    //   }));
-
-    // afterEach(() => {
-    //     sandbox.reset();
-    // });
-
-    // describe('User Service', () => {
-
-    //     it('should be defined', () => {
-    //         // expect(controller).to.be.ok;
-    //     });
-
-
-    // });
-
-})
+    describe('Get Users', () => {
+        it('should fetch the users', () => {
+            $httpBackend.expect('GET', `${apiUrl}/users`).respond(200);
+            expect(userService.getUsers()).to.be.ok;
+            $httpBackend.flush();
+        });
+    });
+});
