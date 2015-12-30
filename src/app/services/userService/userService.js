@@ -1,11 +1,9 @@
 import { assign } from 'lodash';
 
-const API_URL = 'http://demo8156226.mockable.io';
-
 export default class UserService {
     /*@ngInject*/
-    constructor($http) {
-        assign(this, { $http });
+    constructor(apiUrl, $http) {
+        assign(this, { apiUrl, $http });
     }
 
     /**
@@ -13,6 +11,6 @@ export default class UserService {
      * @return {Promise}
      */
     getUsers() {
-        return this.$http.get(`${API_URL}/users`);
+        return this.$http.get(`${this.apiUrl}/users`);
     }
 }

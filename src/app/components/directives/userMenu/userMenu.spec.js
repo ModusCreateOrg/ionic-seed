@@ -48,7 +48,7 @@ describe('User Menu directive', () => {
         expect(stubs.$ionicPopover.fromTemplate).to.have.been.calledWith(sinon.match.string);
     });
 
-    it('should set the logged in as test', () => {
+    it('should set the logged in user text', () => {
         expect(element.find('strong').text()).to.equal($scope.user.name);
     });
 
