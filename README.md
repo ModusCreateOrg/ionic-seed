@@ -1,7 +1,7 @@
 Ionic v1 Seed
 =====================
 
-A starting project for all Ionic 1.0 projects. Features:
+A rather opinionated starting project for all Ionic v1.x projects. Features:
 
 - **Proper component based** application architecture
 - ES6 / Babel
@@ -9,6 +9,7 @@ A starting project for all Ionic 1.0 projects. Features:
 - ngAnnotate
 - SCSS
 - Unit testing harness setup Karma, Jasmine, and Sinon
+- Production builds
 
 ## Why should you use this?
 
@@ -37,34 +38,55 @@ to the Ionic CLI not waiting until all gulp tasks are complete.
 If you wait until Webpack is done, and all gulp tasks are complete, the app
 will load. You shouldn't run into this error again.
 
-## Testing
-This seed is setup to use PhantomJS for test running, and the Karma spec reporter, which gives you nice output on your specs. It looks like this:
+## Structure
+The seed is broken down into the following structure:
+```
+| app
+| ─┬ components
+|  └── ...
+| ─┬ views
+|  └───┬ about
+|       └── ...
+|           (module definition, controllers, tests, template, scss)
+| ─┬ services
+|  └── ...
+| ─┬ assets
+| ─┬ scss
+```
 
-![karma](https://dl.dropboxusercontent.com/spa/pkr1d5uhq1t8wz1/55ueskxt.png)
+In a typical mobile app environment, **views** are single representations of a screen. These would be the best representation of a true "angular module". Whether this be an "About" screen, Settings, etc. Think about breaking down your views into components that use `<ion-view view-title="...">`. These high level components will be the containers for your other re-usable components.
+
+The root level **components** folder is a place to keep re-usable `.directives` or `.components` -- depending on your use case. This would typically be the place to put components that are **not view specific**. A good example would be the `userMenu` component -- something that could be used across multiple views. 
+
+Another good example of a component would be a side menu. Taking the `<ion-side-menus>` code from `index.html` and extracting it into a re-usable component -- possibly with different states depending on authentication, device, etc. Perhaps you use a Modal dialog multiple times to confirm information. Display variations of a form. All of these are good examples of elements that should be broken down into components. 
+
+## Testing
+All test code resides with the component or view, ala `about.spec.js`. All test files should be named `*.spec.js` for the test harness to work properly. This seed is setup to use PhantomJS for test running, but can easily be adapted to use anything. Mocha provides a nice debug interface for running individual tests, as well as seeing test pass/fail status. 
+
+When Karma is running, open `http://localhost:9876/debug.html` in your browser.
+
+![chai](https://dl.dropboxusercontent.com/spa/pkr1d5uhq1t8wz1/4q69b1bw.png)
 
 There are 2 gulp tasks available for running tests.
 
-`gulp test`
+`$ gulp test`
 
 Will start a Karma server, run tests, and then exit.
 
-`gulp tdd` 
+`$ gulp tdd` 
 
 Starts a Karma server in watch mode.
+
+### Testing References
+- [SinonJ](http://sinonjs.org/docs/)
+- [Chai](http://chaijs.com/guide/)
+- [Mocha](https://mochajs.org/)
 
 
 ## Issues
 
-- Since we're using the Webpack SASS loader, live injection of CSS isn't possible. I'm thinking that we should revert back to using a gulp based SASS build step that will allow us to use live injection of CSS without a full app reload. The Ionic CLI utilizes `tiny-lr` behind the scenes, so everything is already setup to handle this.
 - There is no indication when Webpack is done compiling unless you have your terminal open. Maybe look into something like https://www.npmjs.com/package/gulp-notify-growl to make this more clear.
-- Test coverage reporting is broken. Need to look into how to parse the non-transpiled code and get coverage on that. 
-- Production builds aren't working with `webpack -p` because, reasons. Not sure exactly why this is happening. 
-- Angular 1.5 is out with the new `component` method. Should look into how to upgrade Ionic without breaking everything.
 
 ## TODO
-- figure out production build
-- fix test coverage reporting
 - examples of ngCordova integration
-- examples of Directive tests
-- examples of Service tests
 - examples of e2e testing?

@@ -1,5 +1,5 @@
-import userMenu from './components/directives/userMenu/userMenu';
+import userMenu from './components/userMenu/userMenu';
 
 export default angular
     .module('ionicSeed.directives', [])
-    .directive('userMenu', userMenu)
+    .component('userMenu', userMenu)

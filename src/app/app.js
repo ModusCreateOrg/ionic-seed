@@ -1,5 +1,9 @@
-// import the Ionic framework bundled with Angular
-import 'ionic-sdk/release/js/ionic.bundle'
+import 'angular/angular';
+import 'angular-animate/angular-animate';
+import 'angular-sanitize/angular-sanitize';
+import 'ionic-sdk/release/js/angular-ui/angular-ui-router';
+import 'ionic-sdk/release/js/ionic';
+import 'ionic-sdk/release/js/ionic-angular';
 
 // import ngCordova
 import 'ng-cordova';
@@ -11,7 +15,7 @@ import appDirectives from './app.directives';
 import appServices from './app.services';
 
 // basically, import aboutModule.name
-import aboutModule from './components/about/about.module';
+import aboutModule from './views/about/about.module';
 
 const appModule = angular
     .module('ionicSeed', [

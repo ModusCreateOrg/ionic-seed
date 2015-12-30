@@ -5,9 +5,9 @@
   "repository": "https://github.com/ModusCreateOrg/ionic-seed",
   "license": "MIT",
   "dependencies": {
-    "angular": "^1.4.3",
-    "angular-animate": "^1.4.3",
-    "angular-sanitize": "^1.4.3",
+    "angular": "^1.5.0-rc.0",
+    "angular-animate": "^1.5.0-rc.0",
+    "angular-sanitize": "^1.5.0-rc.0",
     "angular-ui-router": "^0.2.15",
     "ionic-platform-web-client": "^0.2.1",
     "ionic-sdk": "^1.2.1",
@@ -16,7 +16,7 @@
     "ng-cordova": "^0.1.23-alpha"
   },
   "devDependencies": {
-    "angular-mocks": "^1.4.3",
+    "angular-mocks": "^1.5.0-rc.0",
     "babel-core": "^6.3.17",
     "babel-eslint": "^5.0.0-beta6",
     "babel-loader": "^6.2.0",
