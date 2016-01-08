@@ -28,7 +28,7 @@ $positive: #2196F3;
 @import "../../node_modules/ionic-sdk/scss/ionic";
 
 // include your custom component SCSS modules
-@import '../app/components/about/about.scss';
+@import '../app/views/about/about.scss';
 
 .bar {
   border-bottom-width: 0;
