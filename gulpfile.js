@@ -30,7 +30,7 @@ gulp.task('scss', function() {
         .pipe(plumber())
         .pipe(sass().on('error', notify.onError({
             message: '<%= error.message %>',
-            title: 'SCSS Compilation Errror'
+            title: 'SCSS Compilation Error'
         })))
         .pipe(gulp.dest('./www'))
 });
